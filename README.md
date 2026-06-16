@@ -31,7 +31,6 @@ A premium, modern task management application. Smart To-Do features a clean, por
    ```bash
    node server/server.js
    ```
-   *Note: If you have `nodemon` installed or a dev script set up, you can use `npm run dev`.*
 5. **Open the app**
    Navigate to `http://localhost:3000` in your web browser.
 
