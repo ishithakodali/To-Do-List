@@ -26,7 +26,7 @@ A premium, modern task management application. Smart To-Do features a clean, por
    npm install
    ```
 3. **Configure Environment Variables**
-   Ensure you have a `.env` file in the root directory (follow .`env.example`)
+   Ensure you have a `.env` file in the root directory (follow `.env.example`)
 4. **Start the application**
    ```bash
    node server/server.js
