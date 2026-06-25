@@ -430,15 +430,15 @@ button {
     margin-bottom: 3rem;
 }
 
-.quick-add-form {
-    position: relative;
+.quick-add-form-new {
     display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
 
-.quick-add-form input {
+.quick-add-form-new > input[type="text"] {
     width: 100%;
     padding: 1rem 1.25rem;
-    padding-right: 6rem;
     border-radius: var(--radius-lg);
     font-size: 1rem;
     box-shadow: var(--shadow-sm);
@@ -446,30 +446,50 @@ button {
     border: 1px solid var(--border-subtle);
 }
 
-.quick-add-form input:focus {
+.quick-add-form-new > input[type="text"]:focus {
     border-color: var(--border-strong);
     box-shadow: var(--shadow-md);
 }
 
-.quick-add-btn {
-    position: absolute;
-    right: 0.5rem;
-    top: 0.5rem;
-    bottom: 0.5rem;
-    padding: 0 1rem;
-    background: var(--bg-surface-hover);
-    color: var(--text-primary);
+.form-bottom-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.date-input, .reminder-select {
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-md);
     border: 1px solid var(--border-subtle);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.date-input:focus, .reminder-select:focus {
+    outline: none;
+    border-color: var(--text-primary);
+}
+
+.quick-add-btn-new {
+    padding: 0.6rem 1.25rem;
+    background: var(--text-primary);
+    color: var(--bg-base);
+    border: 1px solid transparent;
     border-radius: var(--radius-md);
     font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
     transition: all var(--transition-fast);
+    margin-left: auto;
 }
 
-.quick-add-btn:hover {
-    background: var(--text-primary);
-    color: var(--bg-base);
+.quick-add-btn-new:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
 }
 
 /* Filters & List Container */
@@ -675,4 +695,130 @@ button {
 
 #empty-state p {
     font-size: 0.9rem;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal-container {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.close-btn:hover { color: var(--text-primary); }
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.modal-actions button {
+    width: auto;
+    margin-top: 0;
+}
+
+/* Badges & Task Details */
+.task-meta {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.4rem;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.badge {
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-full);
+    font-weight: 500;
+    font-size: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.badge.completed { background: rgba(34, 197, 94, 0.15); color: #16a34a; }
+.badge.overdue { background: var(--danger-bg); color: var(--danger-hover); }
+.badge.due-today { background: rgba(59, 130, 246, 0.15); color: #2563eb; }
+.badge.due-soon { background: rgba(234, 179, 8, 0.15); color: #ca8a04; }
+.badge.upcoming { background: var(--bg-surface-hover); color: var(--text-secondary); }
+
+body.dark-mode .badge.completed { color: #4ade80; }
+body.dark-mode .badge.due-today { color: #60a5fa; }
+body.dark-mode .badge.due-soon { color: #facc15; }
+
+.task-date-display {
+    color: var(--text-tertiary);
+}
+
+.task-countdown {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.task-countdown.overdue {
+    color: var(--danger-color);
+}
+
+/* Edit Task Button */
+.edit-btn {
+    opacity: 0;
+    background: transparent;
+    color: var(--text-tertiary);
+    border: none;
+    padding: 0.4rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-item:hover .edit-btn { opacity: 1; }
+.edit-btn:hover { color: var(--accent-color); background: var(--accent-glow); }
+
+/* UX improvements for native datetime-local inputs */
+input[type="datetime-local"] {
+    cursor: pointer;
+}
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
+
+body.dark-mode input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }
